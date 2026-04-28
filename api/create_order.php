@@ -52,8 +52,16 @@ foreach ($items as $item) {
     $price = (int)($item["price"] ?? 0);
     $qty = (int)($item["qty"] ?? 0);
 
-    $sqlItem = "INSERT INTO order_items (order_id, menu_id, name, price, qty)
-                VALUES ($orderId, $menuId, '$itemName', $price, $qty)";
+    $spicyLevel = mysqli_real_escape_string($conn, $item["spicy_level"] ?? "");
+    $toppingsJson = mysqli_real_escape_string(
+        $conn,
+        json_encode($item["toppings"] ?? [], JSON_UNESCAPED_UNICODE)
+    );
+
+    $sqlItem = "INSERT INTO order_items 
+    (order_id, menu_id, name, price, qty, spicy_level, toppings)
+    VALUES 
+    ($orderId, $menuId, '$itemName', $price, $qty, '$spicyLevel', '$toppingsJson')";
 
     if (!mysqli_query($conn, $sqlItem)) {
         echo json_encode([

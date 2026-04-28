@@ -9,17 +9,22 @@
 <body>
   <div class="app">
     <header class="topbar">
-      <div>
-        <h1 class="brand-title">Roumah Kitchen</h1>
-        <p class="brand-sub">Scan, pesan, nikmati.</p>
+      <div class="brand-wrap">
+        <img src="image/logo-roumah.png" class="brand-logo-small" alt="Logo Roumah Kitchen">
+
+        <div class="brand-text">
+          <div class="brand-title">Roumah Kitchen</div>
+          <div class="brand-sub">X Coffeein Nusantara</div>
+        </div>
       </div>
+
       <button class="cart-button" id="topCartButton">🛒 0</button>
     </header>
 
     <section class="hero">
       <span class="badge">Order tanpa login</span>
-      <h2>Masakan rumahan yang cepat dipesan</h2>
-      <p>Customer cukup scan QR, pilih menu, isi data singkat, lalu checkout.</p>
+      <h2>Masakan rumahan hangat, siap dinikmati</h2>
+      <p>Pilih menu favorit atau yang Anda inginkan dan pesan sekarang. Kami siapkan dengan dengan sepenuh hati.</p>
     </section>
 
     <main class="section">
@@ -28,6 +33,18 @@
 
       <h2 class="section-title">Menu Pilihan</h2>
       <div class="menu-grid" id="menuGrid"></div>
+
+      <section class="track-home-section">
+        <div class="track-home-card">
+          <div>
+            <h2 class="track-home-title">Cek Status Pesanan</h2>
+            <p class="track-home-text">
+              Sudah pesan? Lacak pesanan Anda dengan kode order dan nomor WhatsApp.
+            </p>
+          </div>
+          <a href="track_order.php" class="track-home-btn">Lacak Pesanan</a>
+        </div>
+      </section>
     </main>
   </div>
 
@@ -101,7 +118,7 @@
           <label for="paymentMethod">Metode Pembayaran</label>
           <select id="paymentMethod" required>
             <option value="COD">COD</option>
-            <option value="Transfer">Transfer</option>
+            <option value="QRIS">QRIS</option>
           </select>
         </div>
 
@@ -126,10 +143,70 @@
       <p class="success-text">Terima kasih. Admin akan segera memproses pesanan Anda.</p>
       <div class="summary" id="successSummary"></div>
       <button class="primary-btn" id="waButton">Chat WhatsApp</button>
+      <button class="secondary-btn" id="trackOrderButton">Lacak Pesanan</button>
       <button class="secondary-btn" id="backToMenu">Kembali ke menu</button>
     </div>
   </section>
 
-  <script src="roumah.js"></script>
+  <div class="modal-backdrop" id="qrisBackdrop"></div>
+  <section class="modal" id="qrisModal">
+    <div class="panel-header">
+      <h3 class="panel-title">Pembayaran QRIS</h3>
+      <button class="close-btn" id="closeQris">×</button>
+    </div>
+    <div class="panel-body qris-body">
+      <p class="qris-text">
+        Silakan scan QRIS di bawah ini untuk membayar pesanan Anda.
+      </p>
+
+      <img src="image/qris.png" alt="QRIS Roumah Kitchen" class="qris-image" id="qrisImage">
+
+      <div class="summary">
+        <div class="summary-row">
+          <span>Total Bayar</span>
+          <strong id="qrisTotal">Rp 0</strong>
+        </div>
+      </div>
+
+      <div class="qris-actions">
+        <button type="button" class="secondary-btn" id="copyNominalButton">Copy Nominal</button>
+        <a href="image/qris.png" download="qris-roumah-kitchen.png" class="secondary-btn qris-download-btn">Download QRIS</a>
+      </div>
+
+      <p class="qris-note">
+        Setelah selesai membayar, klik tombol <strong>Saya Sudah Bayar</strong> untuk lanjut ke pelacakan pesanan dan upload bukti pembayaran.
+      </p>
+
+      <button type="button" class="primary-btn" id="afterQrisButton">Saya Sudah Bayar</button>
+      <button type="button" class="secondary-btn" id="backFromQris">Kembali</button>
+    </div>
+  </section>
+
+  <script src="roumah.js?v=3"></script>
+  <footer class="app-footer">
+  <div class="footer-content">
+    
+    <div class="footer-brand">
+      <strong>Roumah Kitchen</strong>
+      <span>X Coffeein Nusantara</span>
+    </div>
+
+    <div class="footer-info">
+      <p>Masakan rumahan & kopi terbaik untuk Anda</p>
+      <p>📍 Kontrakan Pondok Ranau Rantau No 44, Pengasinan, Rawalumbu, Kota Bekasi (17115)</p>
+    </div>
+
+    <div class="footer-contact">
+      <a href="https://coffeeinnusantara.com/" target="_blank">
+        www.coffeeinnusantara.com
+      </a>
+    </div>
+
+    <div class="footer-copy">
+      © 2026 DewanDn. All rights reserved.
+    </div>
+
+  </div>
+</footer>
 </body>
 </html>
